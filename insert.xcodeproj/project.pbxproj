@@ -98,6 +98,7 @@
 		3BB0388F1E54FFBF00861DD3 /* KeyboardExtention.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardExtention.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB038911E54FFBF00861DD3 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		3BB038931E54FFBF00861DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BB0389A1E5501A400861DD3 /* KeyboardExtention.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeyboardExtention.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +202,7 @@
 		3BB038901E54FFBF00861DD3 /* KeyboardExtention */ = {
 			isa = PBXGroup;
 			children = (
+				3BB0389A1E5501A400861DD3 /* KeyboardExtention.entitlements */,
 				3BB038911E54FFBF00861DD3 /* KeyboardViewController.swift */,
 				3BB038931E54FFBF00861DD3 /* Info.plist */,
 			);
@@ -298,6 +300,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Q9S3S8XXD4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -590,6 +597,7 @@
 		3BB038971E54FFBF00861DD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KeyboardExtention/KeyboardExtention.entitlements;
 				DEVELOPMENT_TEAM = Q9S3S8XXD4;
 				INFOPLIST_FILE = KeyboardExtention/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -603,6 +611,7 @@
 		3BB038981E54FFBF00861DD3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = KeyboardExtention/KeyboardExtention.entitlements;
 				DEVELOPMENT_TEAM = Q9S3S8XXD4;
 				INFOPLIST_FILE = KeyboardExtention/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
