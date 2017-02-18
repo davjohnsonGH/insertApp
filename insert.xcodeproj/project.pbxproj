@@ -35,6 +35,9 @@
 		3BB02E461E3D378700AEA5BD /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB02E451E3D378700AEA5BD /* GroupTableViewController.swift */; };
 		3BB038921E54FFBF00861DD3 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB038911E54FFBF00861DD3 /* KeyboardViewController.swift */; };
 		3BB038961E54FFBF00861DD3 /* KeyboardExtention.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3BB0388F1E54FFBF00861DD3 /* KeyboardExtention.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3BB038A41E58D79F00861DD3 /* KeyboardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB038A31E58D79F00861DD3 /* KeyboardStoryboard.storyboard */; };
+		3BB038A61E58D7F000861DD3 /* KeyboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB038A51E58D7F000861DD3 /* KeyboardTableViewController.swift */; };
+		3BB038A81E59085000861DD3 /* InsertKeyboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB038A71E59085000861DD3 /* InsertKeyboardTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,9 @@
 		3BB038911E54FFBF00861DD3 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		3BB038931E54FFBF00861DD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BB0389A1E5501A400861DD3 /* KeyboardExtention.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeyboardExtention.entitlements; sourceTree = "<group>"; };
+		3BB038A31E58D79F00861DD3 /* KeyboardStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = KeyboardStoryboard.storyboard; sourceTree = "<group>"; };
+		3BB038A51E58D7F000861DD3 /* KeyboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTableViewController.swift; sourceTree = "<group>"; };
+		3BB038A71E59085000861DD3 /* InsertKeyboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsertKeyboardTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +211,9 @@
 				3BB0389A1E5501A400861DD3 /* KeyboardExtention.entitlements */,
 				3BB038911E54FFBF00861DD3 /* KeyboardViewController.swift */,
 				3BB038931E54FFBF00861DD3 /* Info.plist */,
+				3BB038A31E58D79F00861DD3 /* KeyboardStoryboard.storyboard */,
+				3BB038A51E58D7F000861DD3 /* KeyboardTableViewController.swift */,
+				3BB038A71E59085000861DD3 /* InsertKeyboardTableViewController.swift */,
 			);
 			path = KeyboardExtention;
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BB038A41E58D79F00861DD3 /* KeyboardStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +406,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BB038A61E58D7F000861DD3 /* KeyboardTableViewController.swift in Sources */,
+				3BB038A81E59085000861DD3 /* InsertKeyboardTableViewController.swift in Sources */,
 				3BB038921E54FFBF00861DD3 /* KeyboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,6 +671,7 @@
 				3BB038981E54FFBF00861DD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
