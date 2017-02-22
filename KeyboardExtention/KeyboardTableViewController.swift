@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 
-class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate {
+class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
     
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        initFetch()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,15 +36,18 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+
+        guard let inserts = fetchedResultsController.fetchedObjects else { return 0 }
+        return inserts.count
     }
 
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let insert = fetchedResultsController.object(at: indexPath)
 
-        cell.textLabel?.text = "test"
+        cell.textLabel?.text = insert.title
 
         return cell
     }
@@ -62,6 +64,41 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
         (textDocumentProxy as UIKeyInput).insertText(textToSet)
     
     }
+    
+    private func initFetch() {
+        
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        
+    }
+    
+    
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<GroupedInsert> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<GroupedInsert> = GroupedInsert.fetchRequest()
+        
+        // Configure Fetch Request
+        //        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseController.getContext(),
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+    
  
 
     /*
