@@ -106,6 +106,10 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     }()
     
  
+    @IBAction func nextKeyboard(_ sender: Any) {
+        
+        self.advanceToNextInputMode()
+    }
 
     /*
     // Override to support conditional editing of the table view.
