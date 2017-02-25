@@ -12,8 +12,13 @@ import CoreData
 
 class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
         initFetch()
         
         // Uncomment the following line to preserve selection between presentations
@@ -38,6 +43,7 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         guard let inserts = fetchedResultsController.fetchedObjects else { return 0 }
+        
         return inserts.count
     }
 
