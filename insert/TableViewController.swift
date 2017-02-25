@@ -197,7 +197,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
 //        }
 //    }
 //    
-    func initializeFetchedResultsController(predicate: String) {
+   private func initializeFetchedResultsController(predicate: String) {
         
         let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "groupID == %@", predicate)
