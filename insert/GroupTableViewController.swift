@@ -304,7 +304,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    func initializeFetchedResultsController(sortDescriptor: String) {
+    private func initializeFetchedResultsController(sortDescriptor: String) {
         
         let fetchRequest: NSFetchRequest<GroupedInsert> = GroupedInsert.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortDescriptor, ascending: true)]
