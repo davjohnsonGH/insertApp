@@ -11,6 +11,7 @@ import UIKit
 protocol KeyboardTableViewControllerDelegate: class {
     
     func setText (textToSet: String)
+    func advanceToNext ()
     
 }
 
@@ -19,8 +20,12 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     
     weak var delegate: KeyboardTableViewControllerDelegate?
     
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -61,6 +66,12 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
     }
     
+    @IBAction func nextKeyboard(_ sender: Any) {
+        
+        delegate?.advanceToNext()
+        self.advanceToNextInputMode()
+        
+    }
     
     /*
      // Override to support conditional editing of the table view.

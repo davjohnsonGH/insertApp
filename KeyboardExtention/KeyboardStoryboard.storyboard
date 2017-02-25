@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Gom-Kt-Ndx" kind="show" id="BtK-BZ-NfL"/>
+                                            <segue destination="B9s-ef-mK4" kind="show" id="Cyj-Ye-QI8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -130,8 +130,60 @@
             </objects>
             <point key="canvasLocation" x="-130" y="-10"/>
         </scene>
+        <!--Insert Keyboard Table View Controller-->
+        <scene sceneID="IjJ-8b-Nc4">
+            <objects>
+                <viewController id="B9s-ef-mK4" customClass="InsertKeyboardTableViewController" customModule="KeyboardExtention" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Law-a9-Uqj"/>
+                        <viewControllerLayoutGuide type="bottom" id="gbT-ey-E7i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Os-QX-ExM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OIE-d8-UtL">
+                                <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="Xlx-sG-5WM">
+                                        <connections>
+                                            <action selector="nextKeyboard:" destination="B9s-ef-mK4" id="4Gu-EZ-MeW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I1d-AC-xcL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reuseIdentifierInsert" id="pjP-BG-Ssl">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pjP-BG-Ssl" id="vQ8-Kv-IO5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="4Os-QX-ExM" id="xhD-w3-Cz2"/>
+                                    <outlet property="delegate" destination="4Os-QX-ExM" id="u1E-e5-kt2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="220"/>
+                    <connections>
+                        <outlet property="tableView" destination="I1d-AC-xcL" id="GnC-Hr-8Iy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zym-ug-2ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-914.39999999999998" y="273.4632683658171"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="BtK-BZ-NfL"/>
-    </inferredMetricsTieBreakers>
 </document>
