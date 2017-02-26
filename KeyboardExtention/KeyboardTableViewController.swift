@@ -13,6 +13,12 @@ import CoreData
 class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    private let segueGroupToInsertSegue = "GroupToInsertSegue"
+//    var managedObjectContext = DatabaseController.getContext()
+//    var insertWithGroup: GroupedInsert?
+//    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -163,8 +169,17 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let controller = segue.destination as! InsertKeyboardTableViewController
-        controller.delegate = self
+//        let controller = segue.destination as! InsertKeyboardTableViewController
+        guard let destinationViewController = segue.destination as? InsertKeyboardTableViewController else { return }
+        
+        destinationViewController.delegate = self
+        // Configure View Controller
+        destinationViewController.managedObjectContext = DatabaseController.getContext()
+        
+        if let indexPath = tableView.indexPathForSelectedRow, segue.identifier! == segueGroupToInsertSegue {
+            // Configure View Controller
+            destinationViewController.insertWithGroup = fetchedResultsController.object(at: indexPath)
+        }
     }
 
 }

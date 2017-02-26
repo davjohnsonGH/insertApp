@@ -7,6 +7,7 @@
 // InsertKeyboardTableViewController
 
 import UIKit
+import CoreData
 
 protocol KeyboardTableViewControllerDelegate: class {
     
@@ -16,13 +17,18 @@ protocol KeyboardTableViewControllerDelegate: class {
 }
 
 
-class InsertKeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource {
+class InsertKeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     weak var delegate: KeyboardTableViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
+    var managedObjectContext = DatabaseController.getContext()
+    var insertWithGroup: GroupedInsert?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initFetch()
+        updateView()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -48,21 +54,27 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        guard let inserts = fetchedResultsController.fetchedObjects else { return 0 }
+        return inserts.count
     }
     
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifierInsert", for: indexPath)
         
-        cell.textLabel?.text = "testNEW"
+        let insert = fetchedResultsController.object(at: indexPath)
+        
+        cell.textLabel?.text = insert.title
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        delegate?.setText(textToSet: "akghdsgvkh")
+        
+        let insert = fetchedResultsController.object(at: indexPath)
+        
+        delegate?.setText(textToSet: insert.title!)
         
     }
     
@@ -72,6 +84,80 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         self.advanceToNextInputMode()
         
     }
+    
+    private func updateView() {
+        var hasInserts = false
+        
+        if insertWithGroup?.groupID != "*" {
+            
+            initializeFetchedResultsController(predicate: (insertWithGroup?.groupID)!)
+            
+        }
+        
+        if let inserts = self.fetchedResultsController.fetchedObjects {
+            hasInserts = inserts.count > 0
+        }
+        
+        //        tableView.isHidden = !hasInserts
+        
+    }
+    
+    private func initFetch() {
+        
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        
+    }
+    
+    private func initializeFetchedResultsController(predicate: String) {
+        
+        let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "groupID == %@", predicate)
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        self.fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseController.getContext(),
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        self.fetchedResultsController.delegate = self
+        
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }
+    
+    
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Insert> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
+        
+        // Configure Fetch Request
+        //        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseController.getContext(),
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+    
+    
     
     /*
      // Override to support conditional editing of the table view.
