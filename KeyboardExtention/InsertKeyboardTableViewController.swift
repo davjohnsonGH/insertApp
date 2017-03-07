@@ -86,7 +86,7 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     }
     
     private func updateView() {
-        var hasInserts = false
+//        var hasInserts = false
         
         if insertWithGroup?.groupID != "*" {
             
@@ -94,9 +94,9 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
             
         }
         
-        if let inserts = self.fetchedResultsController.fetchedObjects {
-            hasInserts = inserts.count > 0
-        }
+//        if let inserts = self.fetchedResultsController.fetchedObjects {
+//            hasInserts = inserts.count > 0
+//        }
         
         //        tableView.isHidden = !hasInserts
         

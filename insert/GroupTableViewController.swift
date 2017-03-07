@@ -60,14 +60,14 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         }
         
         
-        updateView()
+//        updateView()
     }
     
     
     private func setupView() {
         initFetch()
         addToolBar()
-        updateView()
+//        updateView()
         setNavbar()
         setObservers()
         // Uncomment the following line to preserve selection between presentations
@@ -245,16 +245,16 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
 
     }
     
-    private func updateView() {
-        var hasInserts = false
-        
-        if let inserts = self.fetchedResultsController.fetchedObjects {
-            hasInserts = inserts.count > 0
-        }
-        
+//    private func updateView() {
+//        var hasInserts = false
+//        
+//        if let inserts = self.fetchedResultsController.fetchedObjects {
+//            hasInserts = inserts.count > 0
+//        }
+//        
 //        tableView.isHidden = !hasInserts
-
-    }
+//
+//    }
     
     private func initFetch() {
         
@@ -453,7 +453,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
         insertWithGroup = newInsertGroup
         
-        updateView()
+//        updateView()
     
     }
     

@@ -114,7 +114,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
     // MARK: - Helper Methods
     
     private func updateView() {
-        var hasInserts = false
+//        var hasInserts = false
         
         if insertWithGroup?.groupID != "*" {
             
@@ -122,10 +122,10 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
             
         }
         
-        if let inserts = self.fetchedResultsController.fetchedObjects {
-            hasInserts = inserts.count > 0
-        }
-        
+//        if let inserts = self.fetchedResultsController.fetchedObjects {
+//            hasInserts = inserts.count > 0
+//        }
+//        
 //        tableView.isHidden = !hasInserts
 
     }
