@@ -28,7 +28,7 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         initFetch()
-        updateView()
+//        updateView()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -74,13 +74,15 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
         let insert = fetchedResultsController.object(at: indexPath)
         
-        delegate?.setText(textToSet: insert.title!)
+        (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+        
+//        delegate?.setText(textToSet: insert.title!)
         
     }
     
     @IBAction func nextKeyboard(_ sender: Any) {
         
-        delegate?.advanceToNext()
+//        delegate?.advanceToNext()
         self.advanceToNextInputMode()
         
     }
