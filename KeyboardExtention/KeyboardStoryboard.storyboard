@@ -47,7 +47,7 @@
                                 <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="pWS-VA-cuS">
+                                    <barButtonItem title="Next" id="pWS-VA-cuS">
                                         <connections>
                                             <action selector="nextKeyboard:" destination="lGi-Hh-9kg" id="EsR-kT-dbj"/>
                                         </connections>
@@ -102,7 +102,7 @@
                                 <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="Xlx-sG-5WM">
+                                    <barButtonItem title="Next" id="Xlx-sG-5WM">
                                         <connections>
                                             <action selector="nextKeyboard:" destination="B9s-ef-mK4" id="4Gu-EZ-MeW"/>
                                         </connections>
@@ -120,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zym-ug-2ho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-914.39999999999998" y="459.67016491754129"/>
+            <point key="canvasLocation" x="-914" y="278"/>
         </scene>
     </scenes>
 </document>
