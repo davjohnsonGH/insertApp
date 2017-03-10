@@ -9,9 +9,17 @@
 import UIKit
 import CoreData
 
-
-class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
+protocol KeyboardTableViewControllerDelegate: class {
     
+//    func setText (textToSet: String)
+    func advanceToNext ()
+    
+}
+
+
+class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+    
+    weak var delegate: KeyboardTableViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
     private let segueGroupToInsertSegue = "GroupToInsertSegue"
 //    var managedObjectContext = DatabaseController.getContext()
@@ -21,11 +29,12 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initFetch()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        initFetch()
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -71,11 +80,11 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
         
     }
     
-    func setText (textToSet: String) {
-                
-        (textDocumentProxy as UIKeyInput).insertText(textToSet)
-    
-    }
+//    func setText (textToSet: String) {
+//                
+//        (textDocumentProxy as UIKeyInput).insertText(textToSet)
+//    
+//    }
     
     private func initFetch() {
         
@@ -114,14 +123,16 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
  
     @IBAction func nextKeyboard(_ sender: Any) {
         
-        self.advanceToNextInputMode()
+//        self.advanceToNextInputMode()
+//        advanceToNext()
+        delegate?.advanceToNext()
     }
     
-    func advanceToNext () {
-        
-        self.advanceToNextInputMode()
-        
-    }
+//    func advanceToNext () {
+//        
+//        self.advanceToNextInputMode()
+//        
+//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -168,18 +179,18 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     }
     */
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let controller = segue.destination as! InsertKeyboardTableViewController
-        guard let destinationViewController = segue.destination as? InsertKeyboardTableViewController else { return }
-        
-        destinationViewController.delegate = self
-        // Configure View Controller
-        destinationViewController.managedObjectContext = DatabaseController.getContext()
-        
-        if let indexPath = tableView.indexPathForSelectedRow, segue.identifier! == segueGroupToInsertSegue {
-            // Configure View Controller
-            destinationViewController.insertWithGroup = fetchedResultsController.object(at: indexPath)
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+////        let controller = segue.destination as! InsertKeyboardTableViewController
+////        guard let destinationViewController = segue.destination as? InsertKeyboardTableViewController else { return }
+//        
+////        destinationViewController.delegate = self
+//        // Configure View Controller
+////        destinationViewController.managedObjectContext = DatabaseController.getContext()
+////        
+////        if let indexPath = tableView.indexPathForSelectedRow, segue.identifier! == segueGroupToInsertSegue {
+////            // Configure View Controller
+////            destinationViewController.insertWithGroup = fetchedResultsController.object(at: indexPath)
+////        }
+//    }
 
 }

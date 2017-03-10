@@ -9,17 +9,8 @@
 import UIKit
 import CoreData
 
-protocol KeyboardTableViewControllerDelegate: class {
-    
-    func setText (textToSet: String)
-    func advanceToNext ()
-    
-}
 
-
-class InsertKeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
-    
-    weak var delegate: KeyboardTableViewControllerDelegate?
+class InsertKeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var managedObjectContext = DatabaseController.getContext()
@@ -86,7 +77,11 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         self.advanceToNextInputMode()
         
     }
-    
+    func advanceToNext () {
+        
+        self.advanceToNextInputMode()
+        
+    }
     private func updateView() {
 //        var hasInserts = false
         
@@ -205,5 +200,18 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
      // Pass the selected object to the new view controller.
      }
      */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //        let controller = segue.destination as! InsertKeyboardTableViewController
+                guard let destinationViewController = segue.destination as? KeyboardTableViewController else { return }
+        
+                destinationViewController.delegate = self
+        // Configure View Controller
+        //        destinationViewController.managedObjectContext = DatabaseController.getContext()
+        //
+        //        if let indexPath = tableView.indexPathForSelectedRow, segue.identifier! == segueGroupToInsertSegue {
+        //            // Configure View Controller
+        //            destinationViewController.insertWithGroup = fetchedResultsController.object(at: indexPath)
+        //        }
+    }
     
 }
