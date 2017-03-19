@@ -132,6 +132,19 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         }
     }
     
+//        func setText (textToSet: String) {
+//    
+//            (textDocumentProxy as UIKeyInput).insertText(textToSet)
+//    
+//        }
+//    
+//    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        setText()
+//        
+//        
+//    }
+    
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Insert> = {
         // Create Fetch Request

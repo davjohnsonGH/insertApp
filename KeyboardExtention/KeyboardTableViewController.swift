@@ -75,6 +75,12 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let insert = fetchedResultsController.object(at: indexPath)
+        
+        print(insert.groupID)
+        
+        // call segue to InsertKeyboardView and send GroupIdDelegate 
+        
         
         
         
