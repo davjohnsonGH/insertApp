@@ -79,8 +79,8 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
         
         print(insert.groupID)
         
-        // call segue to InsertKeyboardView and send GroupIdDelegate 
-        
+        // call segue to InsertKeyboardView and send GroupIdDelegate
+        performSegue(withIdentifier: "InsertKeyboardTableViewSegue", sender: nil)
         
         
         

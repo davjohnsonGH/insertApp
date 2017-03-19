@@ -58,6 +58,7 @@
                     <size key="freeformSize" width="375" height="220"/>
                     <connections>
                         <outlet property="tableView" destination="mrX-3Z-MFs" id="edK-iF-08X"/>
+                        <segue destination="B9s-ef-mK4" kind="show" identifier="InsertKeyboardTableViewSegue" id="8xM-Uz-adg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzH-BD-rXS" userLabel="First Responder" sceneMemberID="firstResponder"/>
