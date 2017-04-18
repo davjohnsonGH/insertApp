@@ -12,9 +12,12 @@ import CoreData
 
 class InsertKeyboardTableViewController: UIInputViewController, UITableViewDelegate, UITableViewDataSource, KeyboardTableViewControllerDelegate, NSFetchedResultsControllerDelegate {
     
+
     @IBOutlet weak var tableView: UITableView!
     var managedObjectContext = DatabaseController.getContext()
     var insertWithGroup: GroupedInsert?
+    
+    var test = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,13 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         guard let inserts = fetchedResultsController.fetchedObjects else { return 0 }
+        
+        if test == true {
+            
+            guard let inserts = groupFetchedResultsController.fetchedObjects else { return 0 }
+        
+        
+        }
         return inserts.count
     }
     
@@ -55,7 +65,21 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
         let insert = fetchedResultsController.object(at: indexPath)
         
-        cell.textLabel?.text = insert.title
+        
+        if test == true {
+            
+            let groupedInsert = groupFetchedResultsController.object(at: indexPath)
+            
+            
+            cell.textLabel?.text = groupedInsert.title
+        
+        
+        } else {
+            
+            cell.textLabel?.text = insert.title
+        
+        }
+        
         
         return cell
     }
@@ -63,9 +87,18 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let insert = fetchedResultsController.object(at: indexPath)
         
-        (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+        
+        if test != true {
+            
+            let insert = fetchedResultsController.object(at: indexPath)
+            (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+        
+        }
+        
+        
+        
+        
         
 //        delegate?.setText(textToSet: insert.title!)
         
@@ -111,6 +144,24 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
     }
     
+    @IBAction func groupsButtonPressed(_ sender: Any) {
+        
+        print("groups pressed")
+        
+        groupInitializeFetchedResultsController()
+        
+        test = true
+        
+//        self.fetchedResultsController = self.groupFetchedResultsController as! NSFetchedResultsController<Insert> 
+        
+        self.tableView.reloadData()
+        
+        //set table data with group data
+        
+        
+    }
+    
+    
     private func initializeFetchedResultsController(predicate: String) {
         
         let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
@@ -144,11 +195,53 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
 //        
 //        
 //    }
-    
+    private func groupInitializeFetchedResultsController() {
+        
+        
+        let fetchRequest: NSFetchRequest<GroupedInsert> = GroupedInsert.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "groupID == %@", predicate)
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        self.groupFetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseController.getContext(),
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        self.groupFetchedResultsController.delegate = self
+        
+        do {
+            try self.groupFetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Insert> = {
         // Create Fetch Request
         let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
+        
+        // Configure Fetch Request
+        //        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseController.getContext(),
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
+    
+    
+    fileprivate lazy var groupFetchedResultsController: NSFetchedResultsController<GroupedInsert> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<GroupedInsert> = GroupedInsert.fetchRequest()
         
         // Configure Fetch Request
         //        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
