@@ -87,6 +87,8 @@ class AddInsertViewController: UIViewController {
             insert.content  = contentTextView.text
         }
         // Pop View Controller
+        
+    
         _ = navigationController?.popViewController(animated: true)
         
     }

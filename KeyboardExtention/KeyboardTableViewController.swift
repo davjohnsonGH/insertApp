@@ -81,6 +81,9 @@ class KeyboardTableViewController: UIInputViewController, UITableViewDelegate, U
         
         // call segue to InsertKeyboardView and send GroupIdDelegate
         performSegue(withIdentifier: "InsertKeyboardTableViewSegue", sender: nil)
+//        _ = navigationController?.popViewController(animated: true)
+        
+    
         
         
         
