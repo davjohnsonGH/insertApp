@@ -16,6 +16,11 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     var managedObjectContext = DatabaseController.getContext()
     var insertWithGroup: GroupedInsert?
     
+    @IBAction func groupsButton(_ sender: Any) {
+        
+        print("groups button WAZ pressed")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         initFetch()
