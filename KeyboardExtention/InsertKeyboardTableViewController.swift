@@ -18,12 +18,15 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     
     @IBAction func groupsButton(_ sender: Any) {
         
-        print("groups button WAZ pressed")
+        self.fetchedResultsController = self.fetchedResultsControllerGroups as! NSFetchedResultsController<Insert>
+        
+        self.tableView.reloadData()
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         initFetch()
+        initFetchGroups()
 //        updateView()
         
         self.tableView.dataSource = self
@@ -106,6 +109,8 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     
     private func initFetch() {
         
+        print("initFetch CALLED")
+        
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
@@ -115,6 +120,20 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         }
         
     }
+    private func initFetchGroups() {
+        
+        print("initFetchGroups CALLED")
+        
+        do {
+            try self.fetchedResultsControllerGroups.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        
+    }
+    
     
     private func initializeFetchedResultsController(predicate: String) {
         
@@ -149,6 +168,28 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
 //        
 //        
 //    }
+    
+    
+    fileprivate lazy var fetchedResultsControllerGroups: NSFetchedResultsController<GroupedInsert> = {
+        // Create Fetch Request
+        let fetchRequest: NSFetchRequest<GroupedInsert> = GroupedInsert.fetchRequest()
+        
+        // Configure Fetch Request
+        //        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        // Create Fetched Results Controller
+        let fetchedResultsControllerGroups = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: DatabaseController.getContext(),
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsControllerGroups.delegate = self
+        
+        return fetchedResultsControllerGroups
+    }()
     
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController<Insert> = {
