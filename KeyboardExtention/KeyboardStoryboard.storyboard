@@ -106,11 +106,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NPD-oR-ugd"/>
-                                    <barButtonItem title="Groups" id="V1p-lQ-pOg">
-                                        <connections>
-                                            <segue destination="lGi-Hh-9kg" kind="show" id="z5H-N0-Fbt"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="Groups" id="V1p-lQ-pOg"/>
                                 </items>
                             </toolbar>
                         </subviews>
