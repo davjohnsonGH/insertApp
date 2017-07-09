@@ -53,6 +53,8 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
             newInsertGroup.title = "All inserts"
             newInsertGroup.groupID  = "*"
             newInsertGroup.preferredIndex = -1
+            newInsertGroup.isGroup = true
+            
             
             insertWithGroup = newInsertGroup
             

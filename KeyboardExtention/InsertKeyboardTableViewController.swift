@@ -114,12 +114,11 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     private func updateView() {
 //        var hasInserts = false
         
-        if insertWithGroup?.groupID != "*" {
-            
+//        if insertWithGroup?.groupID != "*" {
+        
             initializeFetchedResultsController(predicate: (insertWithGroup?.groupID)!)
             
-        }
-        
+//        }         
 //        if let inserts = self.fetchedResultsController.fetchedObjects {
 //            hasInserts = inserts.count > 0
 //        }
@@ -155,7 +154,12 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     private func initializeFetchedResultsController(predicate: String) {
         
         let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "groupID == %@", predicate)
+        
+        if predicate != "*" {
+            
+            fetchRequest.predicate = NSPredicate(format: "groupID == %@", predicate)
+        
+        }
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "preferredIndex", ascending: true), NSSortDescriptor(key: "createdAt", ascending: false)]
         
