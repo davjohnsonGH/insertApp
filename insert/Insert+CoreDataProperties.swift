@@ -25,6 +25,7 @@ extension Insert {
     @NSManaged public var url: String?
     @NSManaged public var image: NSData?
     @NSManaged public var groupedInserts: NSSet?
+    @NSManaged public var isGroup: Bool
 
 }
 

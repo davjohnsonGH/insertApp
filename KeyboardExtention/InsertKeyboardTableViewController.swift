@@ -14,7 +14,7 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     
     @IBOutlet weak var tableView: UITableView!
     var managedObjectContext = DatabaseController.getContext()
-    var insertWithGroup: GroupedInsert?
+    var insertWithGroup: Insert?
     
     @IBAction func groupsButton(_ sender: Any) {
         
@@ -73,7 +73,28 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
         let insert = fetchedResultsController.object(at: indexPath)
         
-        (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+        // must check if selction is a group, if not then:
+        
+        
+        // will add property to both models true/false is group or not
+        
+        if insert.isGroup == false {
+            
+            (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+        
+        } else {
+            
+            insertWithGroup = insert
+            
+            updateView()
+            self.tableView.reloadData()
+        
+        
+        }
+        
+        
+        
+        // if it is then repopulate table data with inserts from that group
         
 //        delegate?.setText(textToSet: insert.title!)
         
@@ -109,8 +130,6 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
     
     private func initFetch() {
         
-        print("initFetch CALLED")
-        
         do {
             try self.fetchedResultsController.performFetch()
         } catch {
@@ -121,8 +140,6 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
     }
     private func initFetchGroups() {
-        
-        print("initFetchGroups CALLED")
         
         do {
             try self.fetchedResultsControllerGroups.performFetch()

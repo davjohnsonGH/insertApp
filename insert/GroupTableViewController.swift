@@ -450,6 +450,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         newInsertGroup.createdAt = Date().timeIntervalSince1970
         newInsertGroup.title = title
         newInsertGroup.groupID  = randomString(length: 10)
+        newInsertGroup.isGroup = true
         
         insertWithGroup = newInsertGroup
         
