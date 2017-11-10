@@ -59,7 +59,7 @@ class AddInsertViewController: UIViewController {
         
     }
     
-    func saveButtonTapped (sender: UIButton!) {
+    @objc func saveButtonTapped (sender: UIButton!) {
         
         guard let managedObjectContext = managedObjectContext else { return }
         

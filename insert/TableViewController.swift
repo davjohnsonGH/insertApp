@@ -158,7 +158,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
         
     }
     
-    func applicationDidEnterBackground(_ notification: Notification) {
+    @objc func applicationDidEnterBackground(_ notification: Notification) {
         
         do {
             try DatabaseController.getContext().save()
@@ -296,7 +296,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
         
     }
     
-    func addButtonTapped (sender: UIButton!) {
+    @objc func addButtonTapped (sender: UIButton!) {
         self.performSegue(withIdentifier: "AddInsertSegue", sender: nil)
         
     }

@@ -286,7 +286,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    func applicationDidEnterBackground(_ notification: Notification) {
+    @objc func applicationDidEnterBackground(_ notification: Notification) {
         
         do {
             try DatabaseController.getContext().save()
@@ -403,7 +403,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    func addButtonTapped (sender: UIButton!) {
+    @objc func addButtonTapped (sender: UIButton!) {
         
         setAlert()
         
