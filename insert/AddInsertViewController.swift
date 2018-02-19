@@ -31,6 +31,7 @@ class AddInsertViewController: UIViewController {
             
             insertTextField.text = insert.title
             contentTextView.text = insert.content
+//            contentTextView.text = insert.url
             
         }
 

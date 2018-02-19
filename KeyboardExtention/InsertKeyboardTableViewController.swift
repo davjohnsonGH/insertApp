@@ -80,7 +80,16 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
         
         if insert.isGroup == false {
             
-            (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+            if insert.url != nil {
+                
+                (textDocumentProxy as UIKeyInput).insertText(insert.url!)
+                
+            } else {
+                
+                (textDocumentProxy as UIKeyInput).insertText(insert.title!)
+            }
+            
+            
         
         } else {
             
