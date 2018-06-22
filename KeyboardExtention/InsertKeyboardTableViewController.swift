@@ -82,7 +82,7 @@ class InsertKeyboardTableViewController: UIInputViewController, UITableViewDeleg
             
             if insert.url != nil {
                 
-                (textDocumentProxy as UIKeyInput).insertText(insert.url!)
+                (textDocumentProxy as UIKeyInput).insertText(insert.title! + ": " + insert.url!)
                 
             } else {
                 
