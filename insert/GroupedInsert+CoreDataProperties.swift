@@ -24,6 +24,7 @@ extension GroupedInsert {
     @NSManaged public var groupID: String?
     @NSManaged public var image: NSData?
     @NSManaged public var inserts: NSSet?
+    @NSManaged public var isGroup: Bool
 
 }
 

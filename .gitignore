@@ -1,0 +1,5 @@
+*.xcuserstate
+insert.xcworkspace/
+xcuserdata/
+.DS_Store
+

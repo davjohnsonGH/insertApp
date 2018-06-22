@@ -69,9 +69,10 @@ class ShareViewController: SLComposeServiceViewController {
         
         let newGroupedInsert = Insert(context: managedObjectContext)
         
-        newGroupedInsert.createdAt = Date().timeIntervalSince1970
-        newGroupedInsert.title    = contentText
-        newGroupedInsert.groupID  = selectedDeck?.groupID
+        newGroupedInsert.createdAt  = Date().timeIntervalSince1970
+        newGroupedInsert.title      = contentText
+        newGroupedInsert.groupID    = selectedDeck?.groupID
+        newGroupedInsert.url        = self.urlString
         
         DatabaseController.saveContext()
         // Inform the host that we're done, so it un-blocks its UI. Note: Alternatively you could call super's -didSelectPost, which will similarly complete the extension context.

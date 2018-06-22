@@ -114,7 +114,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
     // MARK: - Helper Methods
     
     private func updateView() {
-        var hasInserts = false
+//        var hasInserts = false
         
         if insertWithGroup?.groupID != "*" {
             
@@ -122,10 +122,10 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
             
         }
         
-        if let inserts = self.fetchedResultsController.fetchedObjects {
-            hasInserts = inserts.count > 0
-        }
-        
+//        if let inserts = self.fetchedResultsController.fetchedObjects {
+//            hasInserts = inserts.count > 0
+//        }
+//        
 //        tableView.isHidden = !hasInserts
 
     }
@@ -158,7 +158,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
         
     }
     
-    func applicationDidEnterBackground(_ notification: Notification) {
+    @objc func applicationDidEnterBackground(_ notification: Notification) {
         
         do {
             try DatabaseController.getContext().save()
@@ -197,7 +197,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
 //        }
 //    }
 //    
-    func initializeFetchedResultsController(predicate: String) {
+   private func initializeFetchedResultsController(predicate: String) {
         
         let fetchRequest: NSFetchRequest<Insert> = Insert.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "groupID == %@", predicate)
@@ -296,7 +296,7 @@ class TableViewController: UITableViewController, NSFetchedResultsControllerDele
         
     }
     
-    func addButtonTapped (sender: UIButton!) {
+    @objc func addButtonTapped (sender: UIButton!) {
         self.performSegue(withIdentifier: "AddInsertSegue", sender: nil)
         
     }

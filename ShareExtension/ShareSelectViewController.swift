@@ -65,7 +65,7 @@ class ShareSelectViewController: UIViewController {
         super.viewDidLoad()
         
         
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         title = "Select Deck"
         view.addSubview(tableView)
         

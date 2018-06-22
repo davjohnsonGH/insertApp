@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>KeyboardExtention.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>ShareExtension.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>3B5A3D6E1E3FDA2C00014260</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3BB0388E1E54FFBF00861DD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

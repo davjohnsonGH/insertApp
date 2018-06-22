@@ -53,6 +53,8 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
             newInsertGroup.title = "All inserts"
             newInsertGroup.groupID  = "*"
             newInsertGroup.preferredIndex = -1
+            newInsertGroup.isGroup = true
+            
             
             insertWithGroup = newInsertGroup
             
@@ -60,14 +62,14 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         }
         
         
-        updateView()
+//        updateView()
     }
     
     
     private func setupView() {
         initFetch()
         addToolBar()
-        updateView()
+//        updateView()
         setNavbar()
         setObservers()
         // Uncomment the following line to preserve selection between presentations
@@ -245,16 +247,16 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
 
     }
     
-    private func updateView() {
-        var hasInserts = false
-        
-        if let inserts = self.fetchedResultsController.fetchedObjects {
-            hasInserts = inserts.count > 0
-        }
-        
+//    private func updateView() {
+//        var hasInserts = false
+//        
+//        if let inserts = self.fetchedResultsController.fetchedObjects {
+//            hasInserts = inserts.count > 0
+//        }
+//        
 //        tableView.isHidden = !hasInserts
-
-    }
+//
+//    }
     
     private func initFetch() {
         
@@ -284,7 +286,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    func applicationDidEnterBackground(_ notification: Notification) {
+    @objc func applicationDidEnterBackground(_ notification: Notification) {
         
         do {
             try DatabaseController.getContext().save()
@@ -304,7 +306,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    func initializeFetchedResultsController(sortDescriptor: String) {
+    private func initializeFetchedResultsController(sortDescriptor: String) {
         
         let fetchRequest: NSFetchRequest<GroupedInsert> = GroupedInsert.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortDescriptor, ascending: true)]
@@ -401,7 +403,7 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         
     }
     
-    func addButtonTapped (sender: UIButton!) {
+    @objc func addButtonTapped (sender: UIButton!) {
         
         setAlert()
         
@@ -450,10 +452,11 @@ class GroupTableViewController: UITableViewController, NSFetchedResultsControlle
         newInsertGroup.createdAt = Date().timeIntervalSince1970
         newInsertGroup.title = title
         newInsertGroup.groupID  = randomString(length: 10)
+        newInsertGroup.isGroup = true
         
         insertWithGroup = newInsertGroup
         
-        updateView()
+//        updateView()
     
     }
     

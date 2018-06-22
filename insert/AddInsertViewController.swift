@@ -31,6 +31,7 @@ class AddInsertViewController: UIViewController {
             
             insertTextField.text = insert.title
             contentTextView.text = insert.content
+//            contentTextView.text = insert.url
             
         }
 
@@ -59,7 +60,7 @@ class AddInsertViewController: UIViewController {
         
     }
     
-    func saveButtonTapped (sender: UIButton!) {
+    @objc func saveButtonTapped (sender: UIButton!) {
         
         guard let managedObjectContext = managedObjectContext else { return }
         
